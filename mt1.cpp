@@ -247,9 +247,24 @@ public:
 
     // void function that prints every other data from nodes.
     void every_other_element() {
-        Node* current = head;
+        Node* current = head;   // Starting from head.
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
 
-
+        // Decide whether print or skip the current node.
+        bool print = true;
+        // while loop, and if print is true, print node data.
+        while (current) {
+            if (print) {
+                cout << current->data << " ";
+            }
+            // Move to the next node.
+            current = current->next;
+            // Keep changing print true and false then it will keep change that printing and skiping.
+            print = !print;
+        }
     }
 };
 
@@ -257,6 +272,13 @@ int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
     DoublyLinkedList list;
+
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+    list.push_front(4);
+    list.push_front(5);
+    list.push_front(6);
 
     cout << "print function: " << endl;
     list.print();
