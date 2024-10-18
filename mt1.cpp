@@ -82,21 +82,24 @@ public:
         // If it's the head node, set head to next node.
         else
             head = temp->next; 
-        // Doing same thing like previous code,
+        // Doing same thing like previous code, but for next.
         if (temp->next)
             temp->next->prev = temp->prev;
         else
             tail = temp->prev; 
 
-        delete temp;
+        delete temp;    // Delete the node.
     }
 
+    // void function that delete node with position.
     void delete_pos(int pos) {
+        // Cheking the list is emtpy.
         if (!head) {
             cout << "List is empty." << endl;
             return;
         }
     
+        // If position is the first node, run bring pop_front function and run.
         if (pos == 1) {
             pop_front();
             return;
@@ -104,7 +107,9 @@ public:
     
         Node* temp = head;
     
+        // for loop until i(node) reach at position.
         for (int i = 1; i < pos; i++){
+            // If temp is nullptr then show message and return.
             if (!temp) {
                 cout << "Position doesn't exist." << endl;
                 return;
