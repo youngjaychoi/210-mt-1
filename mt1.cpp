@@ -154,9 +154,10 @@ public:
     // void function that insert a value node at the beginning of the list.
     void push_front(int v) {
         Node* newNode = new Node(v);
-        
+        // If list empty, set head, tail to new node.
         if (!head)
             head = tail = newNode;
+        //  Setting each pointers to others.
         else {
             newNode->next = head;
             head->prev = newNode;
@@ -164,31 +165,37 @@ public:
         }
     }
     
+    // void function that remove the front node.
     void pop_front() {
-
         if (!head) {
             cout << "List is empty." << endl;
             return;
         }
 
+        // Store the current head node.
         Node * temp = head;
 
+        // If there are more than one node set head pointers to next node and set previous pointer to nullptr.
         if (head->next) {
             head = head->next;
             head->prev = nullptr;
         }
+        // With only one node, set head and tail nullptr.
         else
             head = tail = nullptr;
         delete temp;
     }
 
+    // void function that remove the back node.
     void pop_back() {
         if (!tail) {
             cout << "List is empty." << endl;
             return;
         }
+        // Store the current tail node.
         Node * temp = tail;
 
+        // Same as the pop_front function but doing for tail.
         if (tail->prev) {
             tail = tail->prev;
             tail->next = nullptr;
@@ -198,22 +205,27 @@ public:
         delete temp;
     }
 
+    // Desturctor that deleing all of nodes.
     ~DoublyLinkedList() {
+        // while loop that deleting until the list becomes empty.
         while (head) {
             Node* temp = head;
             head = head->next;
             delete temp;
         }
     }
+
+    // void function that print all nodes (head to tail).
     void print() {
-        Node* current = head;
+        Node* current = head;   // Set that starts from the head.
         if (!current) {
             cout << "List is empty." << endl;
             return;
         }
+        // while loop that print each data from nodes.
         while (current) {
-            cout << current->data << " ";
-            current = current->next;
+            cout << current->data << " ";   // Print current node's data
+            current = current->next;        // Move to next.
         }
         cout << endl;
     }
