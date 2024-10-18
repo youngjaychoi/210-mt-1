@@ -5,10 +5,12 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 class DoublyLinkedList {
 private:
+    // Node sturcture: set data and pointers.
     struct Node {
         int data;
         Node* prev;
         Node* next;
+        // Constructor that initialize node's data and pointers.
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
             data = val; 
             prev = p;
@@ -16,11 +18,12 @@ private:
         }
     };
 
+    // Pointer to the first and the last node in list.
     Node* head;
     Node* tail;
 
 public:
-    // Constructor: set head and tail null.
+    // Constructor: initialize head and tail null.
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
     // void function that insert node after position. Also, Check whether conditions are correct or uncorrect.
@@ -60,22 +63,26 @@ public:
         temp->next = newNode;
     }
 
-    // void function that delete node by value.
+    // void function that delete node with value.
     void delete_val(int value) {
+        // Check the list is empty.
         if (!head) return;
 
         Node* temp = head;
         
+        // while loop: Find node with the value.
         while (temp && temp->data != value)
             temp = temp->next;
 
         if (!temp) return; 
 
+        // If the pointer pass the prev make temp goes to the next directly.
         if (temp->prev)
             temp->prev->next = temp->next;
+        // If it's the head node, set head to next node.
         else
             head = temp->next; 
-
+        // Doing same thing like previous code,
         if (temp->next)
             temp->next->prev = temp->prev;
         else
