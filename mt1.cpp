@@ -114,29 +114,36 @@ public:
                 cout << "Position doesn't exist." << endl;
                 return;
             }
+            // Move to the next.
             else
                 temp = temp->next;
         }
+        // After for loop, if temp is nullptr again, the position does not exist.
         if (!temp) {
             cout << "Position doesn't exist." << endl;
             return;
         }
     
+        // If the last node should be deleted, run pop_back function.
         if (!temp->next) {
             pop_back();
             return;
         }
     
+        // Get previous next node and set previous node to current next node then do it again with the opposite way
         Node* tempPrev = temp->prev;
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
         delete temp;
     }
 
+    // void function that insert a value node at the end of the list.
     void push_back(int v) {
         Node* newNode = new Node(v);
+        // If the list is empty, set head and tail to new node.
         if (!tail)
             head = tail = newNode;
+        // Setting each pointers to others.
         else {
             tail->next = newNode;
             newNode->prev = tail;
@@ -144,8 +151,10 @@ public:
         }
     }
     
+    // void function that insert a value node at the beginning of the list.
     void push_front(int v) {
         Node* newNode = new Node(v);
+        
         if (!head)
             head = tail = newNode;
         else {
