@@ -20,21 +20,26 @@ private:
     Node* tail;
 
 public:
+    // Constructor: set head and tail null.
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    // void function that insert node after position. Also, Check whether conditions are correct or uncorrect.
     void insert_after(int value, int position) {
+        // Checking position is positive.
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
         Node* newNode = new Node(value);
+        // Checking list is empty and if it is empty, set head and tail to newNode.
         if (!head) {
             head = tail = newNode;
             return;
         }
 
         Node* temp = head;
+        // 
         for (int i = 0; i < position && temp; ++i)
             temp = temp->next;
 
