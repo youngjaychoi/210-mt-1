@@ -217,7 +217,7 @@ public:
 
     // void function that print all nodes (head to tail).
     void print() {
-        Node* current = head;   // Set that starts from the head.
+        Node* current = head;   // Set to starting from the head.
         if (!current) {
             cout << "List is empty." << endl;
             return;
@@ -230,23 +230,39 @@ public:
         cout << endl;
     }
 
+    // void function that print all nodes (tail to head).
     void print_reverse() {
-        Node* current = tail;
+        Node* current = tail;   // Set to starting from the tail.
         if (!current) { 
             cout << "List is empty." << endl;
             return;
         }
+        // while loop that print each data from nodes. (same as print function)
         while (current) {
-            cout << current->data << " ";
-            current = current->prev;
+            cout << current->data << " ";   // Pirnt current node's data
+            current = current->prev;        // Move to previous node.
         }
         cout << endl;
+    }
+
+    // void function that prints every other data from nodes.
+    void every_other_element() {
+        Node* current = head;
+
+
     }
 };
 
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
+    DoublyLinkedList list;
+
+    cout << "print function: " << endl;
+    list.print();
+
+    cout << "Testing every other element function: " << endl;
+    list.every_other_element();
     
     return 0;
 }
