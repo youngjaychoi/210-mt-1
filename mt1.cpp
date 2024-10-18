@@ -39,16 +39,18 @@ public:
         }
 
         Node* temp = head;
-        // 
+        // for loop that set temp to next until i reach position and temp both.
         for (int i = 0; i < position && temp; ++i)
             temp = temp->next;
 
+        // Checking position exceeding the list size or not. Then show message and delete newNode.
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
         }
 
+        // Replacing elements in newnode to elements in temp.
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next)
@@ -58,6 +60,7 @@ public:
         temp->next = newNode;
     }
 
+    // void function that delete node by value.
     void delete_val(int value) {
         if (!head) return;
 
